@@ -29,7 +29,7 @@ class HospitalController extends Controller
     }
     public function create(){
         $hospital_type = Hospital_type::get_hospital_type();     
-        $area = Area::get_area_type();     
+        // $area = Area::get_area_type();     
         $state = State::get_State();
         $district = District::get_District();
         $tahsil = Tahsil::get_tahsil();
@@ -43,7 +43,7 @@ class HospitalController extends Controller
                                 'tahsil' => $tahsil,
                                 'city' => $city,
                                 'hospital_type' => $hospital_type,
-                                'area' => $area,
+                                // 'area' => $area,
                                 'form_submit_url'=> $form_submit_url, 
                                 'action'=> $action,
                                 'disabled' => $disabled ]);

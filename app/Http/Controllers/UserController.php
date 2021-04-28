@@ -32,20 +32,20 @@ class UserController extends Controller
         return view('user/user_list',['userData' => $userData]);
     }
     public function create(){
-        $po = Po::get_Po(); 
-        $cluster = Cluster::get_cluster();
-        $atc = Atc::get_Atc(); 
+        // $po = Po::get_Po(); 
+        // $cluster = Cluster::get_cluster();
+        // $atc = Atc::get_Atc(); 
         $groups = Groups::get_groups();      
-        $area = Area::get_area_type();  
+        // $area = Area::get_area_type();  
         $city = City::get_City();   
         $action = 'Register New User';
         $disabled = "";
         $form_submit_url = "route('user.store')";
         return view('user/user_view',[  
-                                'cluster' => $cluster,
+                                // 'cluster' => $cluster,
                                 'groups' => $groups,
-                                'atc' => $atc,
-                                'po' => $po,
+                                // 'atc' => $atc,
+                                // 'po' => $po,
                                 'form_submit_url'=> $form_submit_url, 
                                 'action'=> $action,
                                 'disabled' => $disabled,

@@ -22,6 +22,9 @@
 <script src="{{ url('/')}}/resources/js/dashboard2.js"></script>
 <!-- Select2 -->
 <script src="{{ url('/')}}/resources/js/select2.full.min.js"></script>
+<script src="{{ url('/')}}/resources/js/select2.js"></script>
+<script src="{{ url('/')}}/resources/js/select2.full.js"></script>
+<script src="{{ url('/')}}/resources/js/select2.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
 <script src="{{ url('/')}}/resources/js/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- InputMask -->
@@ -42,5 +45,17 @@
 <script src="{{ url('/')}}/resources/js/responsive.bootstrap4.min.js"></script>
 <!-- Custome JS -->
 <script src="{{ url('/')}}/resources/custom/custom.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+ <!--Here Map-->
+ <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+<!--END Here Map-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>        
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" /> 
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 
 

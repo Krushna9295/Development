@@ -11,7 +11,7 @@
 </head>
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-dark" style="background-color: #900808;color: #ffff;">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-dark" style="background-color: #005073;color: #ffff;">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">

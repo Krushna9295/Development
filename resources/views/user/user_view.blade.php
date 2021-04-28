@@ -136,37 +136,6 @@
                                 <span class="text-danger error-text clg_password_err"></span>
                             </div>
                         </div>
-
-                        
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>ATC</label>
-                                <select id="clg_atc" name="clg_atc" class="form-control" {{$disabled}}>
-                                <option value="">Select ATC</option>
-                                @foreach ($atc as $groups)
-
-                                <option  value="{{ $groups->atc_id }}"  @if(isset($user)){{($groups->atc_id == $user->clg_atc) ? 'selected' : ''}} @endif> {{{ $groups->atc_name }}}</option>
-                            
-                                @endforeach
-                                </select>
-                                <span class="text-danger error-text clg_atc_err"></span>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Cluster</label>
-                                <select id="clg_cluster" name="clg_cluster"  multiple class="form-control" {{$disabled}} >
-                                <option value="">Select Cluster</option>
-                                @foreach ($cluster as $groups)
-
-                                <option  value="{{ $groups->cluster_id }}"  @if(isset($user)){{($groups->cluster_id == $user->clg_cluster) ? 'selected' : ''}} @endif> {{{ $groups->cluster_name }}}</option>
-                            
-                                @endforeach
-                                </select>
-                                <span class="text-danger error-text clg_cluster_err"></span>
-                            </div>
-                        </div>
                         
                         <div class="col-md-3">
                             <div class="form-group">
@@ -226,21 +195,7 @@
                                 <span class="text-danger error-text clg_marital_status_err"></span>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Po</label>
-
-                                <select id="clg_po" name="clg_po" class="form-control" {{$disabled}}>
-                                <option value="">Select Po</option>
-                                @foreach ($po as $groups)
-
-                                <option  value="{{ $groups->po_id }}"  @if(isset($user)){{($groups->po_id == $user->clg_po) ? 'selected' : ''}} @endif> {{{ $groups->po_name }}}</option>
-                            
-                                @endforeach
-                                </select>
-                                <span class="text-danger error-text clg_po_err"></span>
-                            </div>
-                        </div>
+                        
 
 
 

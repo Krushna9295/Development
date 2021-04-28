@@ -29,16 +29,16 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/dash', 'App\Http\Controllers\Dash@index')->name('dash');
-//Student
-// Route::get('student/list', 'App\Http\Controllers\StudentController@index')->name('student.list');
-Route::get('student/list', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\StudentController@index'])->name('student.list');
-// Route::get('student/create', 'App\Http\Controllers\StudentController@create')->name('student.create');
-Route::get('student/create', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\StudentController@create'])->name('student.create');
-Route::post('student/store', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\StudentController@store'])->name('student.store');
-Route::get('student/edit/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\StudentController@edit'])->name('student.edit');
-Route::patch('/student/update/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\StudentController@update'])->name('student.update');
-Route::get('/student/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\StudentController@show'])->name('student.view');
-Route::patch('/student/destroy/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\StudentController@destroy'])->name('student.destroy');
+//patient
+// Route::get('patient/list', 'App\Http\Controllers\PatientController@index')->name('patient.list');
+Route::get('patient/list', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@index'])->name('patient.list');
+// Route::get('patient/create', 'App\Http\Controllers\PatientController@create')->name('patient.create');
+Route::get('patient/create', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@create'])->name('patient.create');
+Route::post('patient/store', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@store'])->name('patient.store');
+Route::get('patient/edit/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@edit'])->name('patient.edit');
+Route::patch('/patient/update/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@update'])->name('patient.update');
+Route::get('/patient/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@show'])->name('patient.view');
+Route::patch('/patient/destroy/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@destroy'])->name('patient.destroy');
 //Hospital
 Route::get('hospital/list', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HospitalController@index'])->name('hospital.list');
 Route::get('hospital/create', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HospitalController@create'])->name('hospital.create');
@@ -71,6 +71,6 @@ Route::get('image-upload1', ['middleware' => 'auth', 'uses' => 'App\Http\Control
 Route::post('image-upload', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\ImageUploadController@imageUploadPost'])->name('image.upload.post');
 Route::post('/calls/save_call_details', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\CallsController@save_call_details'])->name('calls.save_call_details');;
 
-
+Route::get('/calls/manage_addr', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\CallsController@manage_addr'])->name('calls.manage_addr');
 
 

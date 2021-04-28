@@ -69,19 +69,7 @@
                                  <span class="text-danger error-text hp_type_err"></span>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Area</label>
-                                <select id="hp_area_type" name="hp_area_type" class="form-control" {{$disabled}}>
-                                <option value="">Select Area</option>
-                                @foreach ($area as $groups)
-
-                                <option  value="{{ $groups->ar_id }}"  @if(isset($hospital)){{($groups->ar_id == $hospital->hp_area_type) ? 'selected' : ''}} @endif> {{{ $groups->ar_name }}}</option>
-                            
-                                @endforeach
-                                </select>
-                                <span class="text-danger error-text hp_area_type_err"></span>                            </div>
-                        </div>
+                        
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Contact Number</label>
@@ -185,19 +173,19 @@
                                 <span class="text-danger error-text hp_city_err"></span> 
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <div class="form-group">
                                 <label>Area/Location</label>
                                 <input type="text" class="form-control" name="hp_area" id="hp_area" placeholder="Area/Location" style="width: 100%;" value="{{ isset($hospital) ? $hospital->hp_area : '' }}" {{$disabled}} autocomplete="off">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Landmark</label>
                                 <input type="text" class="form-control" name="hp_landmark" id="hp_landmark" placeholder="Landmark" style="width: 100%;" value="{{ isset($hospital) ? $hospital->hp_landmark : '' }}" {{$disabled}} autocomplete="off">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <div class="form-group">
                             <label>Lane/Street</label>
                             <input type="text" class="form-control" name="hp_lane_street" id="	hp_lane_street" placeholder="Lane/Street" style="width: 100%;" value="{{ isset($hospital) ? $hospital->hp_lane_street : '' }}" {{$disabled}}>
@@ -215,7 +203,7 @@
                                 <label>Pincode</label>
                                 <input type="text" class="form-control" name="hp_pincode" id="hp_pincode" placeholder="Pincode" style="width: 100%;" value="{{ isset($hospital) ? $hospital->hp_pincode : '' }}" {{$disabled}} autocomplete="off">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     @if($action != "View Hospital")
                     <div class="row">

@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #204228;">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #005073;">
   <!-- Brand Logo -->
   <!-- <a href="index3.html" class="brand-link">
     <img src="resources/images/spero_logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -54,9 +54,9 @@
         <li class="nav-item has-treeview menu-open">
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('student.list')}}" class="nav-link">
+              <a href="{{route('patient.list')}}" class="nav-link">
                 <i class="fa fa-users nav-icon"></i>
-                <p>Student List</p>
+                <p>Patient List</p>
               </a>
             </li>
           </ul>

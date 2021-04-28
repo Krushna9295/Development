@@ -139,7 +139,8 @@ function map_autocomplete(){
             $.get(ui.item.href,function($data){
                 var $place_details = $data.location;
                 // console.log($place_details);
-                auto_complete_place_changed($place_details);
+                // auto_complete_place_changed($place_details);
+                set_inc_add_details($place_details);
             });
 
        // console.log(  ui.item );

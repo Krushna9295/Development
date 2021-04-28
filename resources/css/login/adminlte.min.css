@@ -16529,7 +16529,7 @@ textarea.form-control.is-warning {
 }
 
 .card-warning:not(.card-outline)>.card-header {
-	background-color: #ffc107
+	background-color: #00A0E6
 }
 
 .card-warning:not(.card-outline)>.card-header,
@@ -18163,7 +18163,7 @@ textarea.form-control.is-warning {
 
 .card {
 	/* box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2); */
-	box-shadow: 0 0 1px rgb(255 193 7), 0 1px 4px rgb(255 193 7);
+	box-shadow: 0 0 1px rgb(0 160 230), 0 1px 4px rgb(0 160 230);
 	margin-bottom: 0.5rem
 }
 

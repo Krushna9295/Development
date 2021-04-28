@@ -8,7 +8,9 @@
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <!-- Select2 -->
 <link rel="stylesheet" href="{{ url('/')}}/resources/css/select2.min.css">
+<link rel="stylesheet" href="{{ url('/')}}/resources/css/select2.css">
 <link rel="stylesheet" href="{{ url('/')}}/resources/css/select2-bootstrap4.min.css">
+<link rel="stylesheet" href="{{ url('/')}}/resources/css/select2-bootstrap4.css">
 <!-- Bootstrap4 Duallistbox -->
 <link rel="stylesheet" href="{{ url('/')}}/resources/css/bootstrap-duallistbox.min.css">
 <!-- Ionicons -->
@@ -26,3 +28,5 @@
 <link rel="stylesheet" href="{{ url('/')}}/resources/css/responsive.bootstrap4.min.css">
 <!-- Custome CSS -->
 <link rel="stylesheet" href="{{ url('/')}}/resources/custom/custom.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />

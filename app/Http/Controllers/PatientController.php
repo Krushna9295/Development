@@ -210,4 +210,10 @@ class PatientController extends Controller
       return redirect()->route('patient.list')
       ->with('success','patient Deleted Successfully.');
     }
+    public function follow_up_view($patientId){
+        $data['action'] = 'Follow Up';
+        $data['patient'] = patient::patientRecWithId($patientId);
+        // print_r($data);
+        return view('patient.follow_up_view',$data);
+    }
 }

@@ -8,18 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
     protected $patient = 'tdd_patient';
-    protected $fillable = ['ptn_first_name','ptn_middle_name','ptn_last_name','ptn_dob','ptn_age','ptn_gender','ptn_address','ptn_state','ptn_district','ptn_tahsil','ptn_city','ptn_pincode','added_by','modify_date_sync', 'ptn_isdeleted'];
+    protected $fillable = ['ptn_name','ptn_dob','ptn_age','ptn_gender','ptn_address','ptn_state','ptn_district','ptn_tahsil','ptn_city','ptn_pincode','added_by','modify_date_sync', 'ptn_isdeleted'];
     
     public static function patientRecWithId($patientId){
         return  DB::table('tdd_patient as ptn')
-            ->select('ptn.*','dst.dst_code','dst.dst_name','st.st_code','st.st_name','thl.thl_code','thl.thl_name','cty.cty_id','cty.cty_name','sch.school_name')
+            ->select('ptn.*','dst.dst_code','dst.dst_name','st.st_code','st.st_name','thl.thl_code','thl.thl_name','cty.cty_id','cty.cty_name')
             ->leftJoin('tdd_mas_states as st','ptn.ptn_state','=','st.st_code')  
             ->leftJoin('tdd_mas_districts as dst','ptn.ptn_district','=','dst.dst_code')
             ->leftJoin('tdd_mas_tahshil as thl','ptn.ptn_tahsil','=','thl.thl_code')
-            ->leftJoin('tdd_mas_city as cty','ptn.ptn_city','=','cty.cty_id') 
-            ->leftJoin('tdd_school as sch','ptn.ptn_school_id','=','sch.pk_id')  
+            ->leftJoin('tdd_mas_city as cty','ptn.ptn_city','=','cty.cty_id')   
             ->where('ptn.pk_id',$patientId)
-            ->get();
+            ->get()[0];
     }
     public static function get_patient(){
         return  DB::table('tdd_patient as ptn') 

@@ -39,6 +39,7 @@ Route::get('patient/edit/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Co
 Route::patch('/patient/update/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@update'])->name('patient.update');
 Route::get('/patient/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@show'])->name('patient.view');
 Route::patch('/patient/destroy/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@destroy'])->name('patient.destroy');
+Route::get('/patient/follow_up_view/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@follow_up_view'])->name('patient.follow_up_view');
 //Hospital
 Route::get('hospital/list', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HospitalController@index'])->name('hospital.list');
 Route::get('hospital/create', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HospitalController@create'])->name('hospital.create');

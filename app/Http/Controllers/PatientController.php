@@ -19,8 +19,13 @@ class PatientController extends Controller
     // use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index()
     {
+        $userGroup = Auth::user()->clg_group;
+        if($userGroup == 'UG-ISO'){
+            $patientData = DB::table('tdd_patient')->where('ptn_isdeleted','0')->where('ptn_iso_followup_call_status','0')->orderBy('pk_id','ASC')->get();
+        }else{
+            $patientData = DB::table('tdd_patient')->where('ptn_isdeleted','0')->where('ptn_status','0')->orWhere('ptn_status','followup')->orderBy('pk_id','ASC')->get();
+        }
         // $patientData = DB::table('tdd_patient')->where('ptn_isdeleted','0')->orderBy('pk_id','ASC')->get();
-        $patientData = DB::table('tdd_patient')->where('ptn_isdeleted','0')->where('ptn_status','0')->orWhere('ptn_status','followup')->orderBy('pk_id','ASC')->get();
         return view('patient/patient_list',['patientData' => $patientData]);
     }
     public function create(){

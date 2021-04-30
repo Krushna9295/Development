@@ -30,9 +30,9 @@
         <div class="container-fluid">
             <!-- SELECT2 EXAMPLE -->
             @if($action == "Follow Up")
-            <form method="post" id="patient_followup_form" name="" class="form-horizontal" action="javascript:void(0)">
+            <form method="post" id="isolation_followup_form" name="" class="form-horizontal" action="javascript:void(0)">
             @elseif($action == "Update Patient")
-            <form method="post" id="patient_update_form" name="modalFormData" class="form-horizontal" action="javascript:void(0)">
+            <form method="post" id="isolation_update_form" name="modalFormData" class="form-horizontal" action="javascript:void(0)">
             @method('PATCH')
             @else
                 <form method="post" id="" name="modalFormData" class="form-horizontal" action="">
@@ -74,141 +74,190 @@
                     </div>
                     <hr style="border-top: 2px solid rgb(0 160 230);"/>
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Call Status</label>
-                                <select name="followup_call_status"  id="followup_call_status"  onchange="changeFunc1();" class="form-control" autocomplete="off">
+                                <select name="iso_followup_call_status"  id="iso_followup_call_status"  onchange="changeFunc1();" class="form-control" autocomplete="off">
                                     <option value="">Select Status</option>
                                     <option value="1">Call Answered</option>
                                     <option value="2">Call Not Answered</option>
                                     <option value="3">Call Not Connect</option>
                                     <option value="4">Othert</option>
-                                </select>                             
+                                </select>  
+                                <span class="text-danger error-text iso_followup_call_status_err"></span>                           
                             </div>
                         </div>
-                        <div class="col-md-2" id="followup_call_not_con_div">
+                        <div class="col-md-3" style="display:none" id="iso_call_status_other_div">
+                            <div class="form-group">
+                                <label>Call Status Other</label>
+                                <input type="text" class="form-control" name="iso_call_status_other" id="iso_call_status_other" placeholder="Call Status Other">
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="iso_followup_call_not_con_div">
                             <div class="form-group">
                                 <label>Call Not Connected Reason</label>
-                                <select name="followup_call_not_con"  id="followup_call_not_con" class="form-control" autocomplete="off">
+                                <select name="iso_followup_call_not_con"  id="iso_followup_call_not_con" onchange="changeFunc2();" class="form-control" autocomplete="off">
                                     <option value="">Select Status</option>
                                     <option value="1">Switch Off</option>
                                     <option value="2">Not Reachable</option>
                                     <option value="3">Wrong Number</option>
-                                    <option value="4">Othert (Text Box)</option>
+                                    <option value="4">Othert</option>
                                 </select>                             
                             </div>
                         </div>
+                        <div class="col-md-3" id="iso_followup_call_not_con_div_other">
+                            <div class="form-group">
+                                <label>Call Not Connected Other Reason</label>
+                                <input type="text" class="form-control" name="iso_call_not_con_other_res" placeholder="Reason">                           
+                            </div>
+                        </div>
                     </div>
-
-                    <lable class="lableColor">Blood Invistigation</lable><br/>
-                    <div class="row" id="dynamic_field">
-                        <div class="col-md-1">
-                            <div class="form-group">
-                            <input type="checkbox" class="" name="followup_blood_inv[]" id="followup_blood_inv" placeholder="Pincode" value="D-dimer" >                           
-                            <label>D-dimer</label>
-                            </div>
-                        </div>
-                        <div class="col-md-1">
-                            <div class="form-group">
-                            <input type="checkbox" class="" name="followup_blood_inv[]" id="followup_blood_inv" placeholder="Pincode" value="Sr.Creat" >                           
-                            <label>Sr.Creat</label>
-                            </div>
-                        </div>
-                        <div class="col-md-1">
-                            <div class="form-group">
-                            <input type="checkbox" class="" name="followup_blood_inv[]" id="followup_blood_inv" placeholder="Pincode" value="CRP" >                           
-                            <label>CRP</label>
-                            </div>
-                        </div>
-                        <div class="col-md-1">
-                            <div class="form-group">
-                            <input type="checkbox" class="" name="followup_blood_inv[]" id="followup_blood_inv" placeholder="Pincode" value="RFT" >                           
-                            <label>RFT</label>
-                            </div>
-                        </div> 
-                        <div class="col-md-1">
-                            <div class="form-group">
-                            <input type="checkbox" class="" name="followup_blood_inv[]" id="followup_blood_inv" placeholder="Pincode" value="Blood Sugar" >                           
-                            <label>Blood Sugar</label>
-                            </div>
-                        </div> 
-                    </div>
-                    <div class="row">
+                    <hr style="border-top: 2px solid rgb(0 160 230);"/>
+                    @if(count($patientFollowup) == 0 || count($patientFollowup) < 1)
+                    <div class="row showdiv">
                         <div class="col-md-2">
-                            <div class="form-group">
-                                <label>HRCT</label>
-                                <input type="text" class="form-control" name="followup_hrct" id="ptn_hrct" placeholder="HRCT" style="width: 100%;" value="">
-                                <div id="slider-range7" style="margin: 7px;"></div>
-                            </div>
+                            <label>On Set Of Illness:</label>                           
                         </div>
                         <div class="col-md-2">
+                            <input type="text" class="form-control" name="iso_on_set_of_illness" placeholder="On Set Of Illness">                            
+                        </div>
+                        <div class="col-md-2">
+                            <lable class="">Doctor Details : </lable>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" name="iso_doctor_name" id="iso_doctor_name" placeholder="Doctor Name" value="">
+                            <span class="text-danger error-text iso_doctor_name_err"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" name="iso_doctor_cont_no" id="iso_doctor_cont_no" placeholder="Doctor Contact No." value="">
+                        </div>
+                    </div><hr class="showdiv">
+                    <div class="row showdiv">
+                        <div class="col-md-2">
+                            <label>Test/Investigation Advised:</label>                           
+                        </div>
+                        <div class="col-md-2">
+                                <select name="iso_test_inv_advised"  id="iso_test_inv_advised" class="form-control" autocomplete="off">
+                                    <option value="">Select Advised</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>                             </div>
+                        <div class="col-md-2">
+                            <lable class="">T/T Givenor Advice Given: </lable>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" name="iso_t_t_givenor_adv_given" id="iso_doctor_name" placeholder="T/T Givenor Advice Given" value="">
+                            <span class="text-danger error-text iso_doctor_name_err"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <lable class="">No of Visits Date Wise T/T: </lable>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" name="iso_no_visit_date_wise_t_t" id="iso_no_visit_date_wise_t_t" placeholder="No of Visits Date Wise T/T" value="">
+                        </div>
+                    </div><hr class="showdiv">
+                    @endif
+                    <div class="row showdiv">
+                        <div class="col-md-2">
                             <div class="form-group">
-                                <label>Chest X-Ray</label>
-                                <select name="followup_chest_x_ray"  id="followup_chest_x_ray" class="form-control" autocomplete="off">
-                                    <option value="">Select Chest X-Ray</option>
+                                <label>Breathlessness</label>
+                                <select name="iso_breath" id="iso_breath" class="form-control" autocomplete="off">
+                                    <option value="">Select Breathlessness</option>
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>                             
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Chest Pain</label>
+                                <select name="iso_chest_pain" id="iso_chest_pain" class="form-control" autocomplete="off">
+                                    <option value="">Select Chest Pain</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>                             
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Fever</label>
+                                <select name="iso_fever" id="iso_fever" class="form-control" autocomplete="off">
+                                    <option value="">Select Fever</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>                             
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Cough</label>
+                                <select name="iso_cough" id="iso_cough" class="form-control" autocomplete="off">
+                                    <option value="">Select Cough</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>                             
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Diarrhea</label>
+                                <select name="iso_diarrhea" id="iso_diarrhea" class="form-control" autocomplete="off">
+                                    <option value="">Select Diarrhea</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>                             
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Comorbidity</label>
+                                <input type="text" name="iso_comorbidity" class="form-control" placeholder="Comorbidity">                            
+                            </div>
+                        </div>
+                    </div><hr class="showdiv">
+                    <div class="row showdiv">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>SPO2</label>
+                                <input type="text" class="form-control" name="iso_spo_two" id="iso_spo_two" placeholder="SpO2" style="width: 100%;" value="">
+                                <div id="slider-range1" style="margin: 7px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Pulse</label>
+                                <input type="text" class="form-control" name="iso_pulse" id="iso_pulse" placeholder="Pulse" style="width: 100%;" value="">
+                                <div id="slider-range2" style="margin: 7px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>RR</label>
+                                <input type="text" class="form-control" name="iso_rr" id="iso_rr" placeholder="RR" style="width: 100%;" value="">
+                                <div id="slider-range3" style="margin: 7px;"></div>
+                            </div>
+                        </div>
+                    </div><hr class="showdiv">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Remark</label>
+                                <input type="text" class="form-control" name="iso_remark" id="iso_remark" placeholder="Remark" style="width: 100%;" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Close Call</label>
+                                <select name="iso_close_call" id="iso_close_call" class="form-control" autocomplete="off">
+                                    <option value="">Select Close Call</option>
+                                    <option value="1">Call Not Close</option>
+                                    <option value="2">Call Close</option>
+                                </select>      
+                                <span class="text-danger error-text iso_close_call_err"></span>                          
+                            </div>
+                        </div>
                     </div>
                     <hr style="border-top: 2px solid rgb(0 160 230);"/>
-                    <div class="row" id="dynamic_field">
-                        <div class="col-md-3">
-                            <lable class="">Referring Doctor Details : </lable>
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" name="followup_ref_doc_name" id="followup_ref_doc_name" placeholder="Name" value="">
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" name="followup_ref_doc_cont_no" id="followup_ref_doc_cont_no" placeholder="Contact No." value="">
-                        </div>
-                    </div><hr>
-                    <div class="row" id="dynamic_field">
-                        <div class="col-md-3">
-                            <lable class="">Attending Doctor / Consultant / Physician Details1 : </lable>
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" name="followup_atnd_doc_name" id="followup_atnd_doc_name" placeholder="Name" value="">
-                            <span class="text-danger error-text followup_atnd_doc_name_err"></span>
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" name="followup_atnd_doc_cont_no" id="followup_atnd_doc_cont_no" placeholder="Contact No." value="">
-                        </div>
-                    </div><hr>
-                    <div class="row" id="dynamic_field">
-                        <div class="col-md-3">
-                            <lable class="">Hospital Details : </lable>
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" name="followup_hosp_name" id="followup_hosp_name" placeholder="Name" value="">
-                            <span class="text-danger error-text followup_hosp_name_err"></span>
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" name="followup_hosp_cont_no" id="followup_hosp_cont_no" placeholder="Contact No." value="">
-                        </div>
-                    </div>
-                    <hr style="border-top: 2px solid rgb(0 160 230);"/>
-                    <div class="row" id="dynamic_field">
-                        <div class="col-md-1">
-                            <lable class="">Patient Status : </lable>
-                        </div>
-                        <div class="col-md-2">
-                            <select name="followup_status"  id="followup_status" class="form-control" autocomplete="off">
-                                <option value="">Select Patient Status</option>
-                                <option value="discharge">Discharge</option>
-                                <option value="death">Death</option>
-                                <option value="followup">Followup</option>
-                            </select>   
-                            <span class="text-danger error-text followup_status_err"></span>
-                        </div>
-                        <div class="col-md-1">
-                            <lable class="">Remark : </lable>
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" name="followup_remark" id="followup_remark" placeholder="Remark" value="">   
-                        </div>
-                    </div>
                     @if($action != "View patient")
                     <div class="row">
                         <div class="offset-md-6 col-md-2">
@@ -238,39 +287,50 @@
 </body>
 </html>
 <script>
-
 $( document ).ready(function() {
-        $('#followup_call_not_con_div').hide();
+        $('#iso_followup_call_not_con_div').hide();
+        $('#iso_followup_call_not_con_div_other').hide();
+        $('.showdiv').hide();
        //$('#grievance_div').hide();
     });
 
-    
+
     function changeFunc1() {
-            
-            var followup_call_status = document.getElementById("followup_call_status");
-          
-            var selectedValue = followup_call_status.options[followup_call_status.selectedIndex].value;
-//  alert(selectedValue );
-            if (selectedValue == "3") {
-
-                $('#followup_call_not_con_div').show();
-               
-
-            }  else{
-                
-                $('#followup_call_not_con_div').hide();
-             
-            }
-           
+        var iso_followup_call_status = document.getElementById("iso_followup_call_status");
+        var selectedValue = iso_followup_call_status.options[iso_followup_call_status.selectedIndex].value;
+        if (selectedValue == "3") {
+            $('#iso_followup_call_not_con_div').show();
+        }  else{
+            $('#iso_followup_call_not_con_div').hide();
         }
+        if (selectedValue == "4") {
+            $('#iso_call_status_other_div').show();
+        }  else{
+            $('#iso_call_status_other_div').hide();
+        }
+        if (selectedValue == "1") {
+            $('.showdiv').show();
+        }  else{
+            $('.showdiv').hide();
+        }
+    }
+    function changeFunc2() {
+        var iso_followup_call_status = document.getElementById("iso_followup_call_not_con");
+        var selectedValue = iso_followup_call_status.options[iso_followup_call_status.selectedIndex].value;
+        if (selectedValue == "4") {
+            $('#iso_followup_call_not_con_div_other').show();
+        }  else{
+            $('#iso_followup_call_not_con_div_other').hide();
+        }
+    }
 
 
     $(".btn-submit").click(function(e){
         e.preventDefault();
-        if($('#patient_followup_form').serialize()!=""){
-            var form = $('#patient_followup_form');
-            $url = "{{ route('patient.follow_up_store') }}";
-        }else if($('#patient_update_form').serialize()!=""){
+        if($('#isolation_followup_form').serialize()!=""){
+            var form = $('#isolation_followup_form');
+            $url = "{{ route('isolation.follow_up_store') }}";
+        }else if($('#isolation_update_form').serialize()!=""){
             var form = $('#patient_update_form');
             <?php if(isset($patient->pk_id)){ ?>
                 $url = "{{action( 'App\Http\Controllers\PatientController@update',"$patient->pk_id" )}}";
@@ -301,16 +361,40 @@ $( document ).ready(function() {
         });
     }
     $(function() {
-        $( "#slider-range7" ).slider({
+        $( "#slider-range1" ).slider({
         range: true,
         min: 0,
-        max: 25,
+        max: 94,
         //   values: [ 75, 300 ],
         slide: function( event, ui ) {
-            $( "#ptn_hrct" ).val(ui.values[ 1 ] );
+            $( "#iso_spo_two" ).val(ui.values[ 1 ] );
         }
         });
-        $( "#ptn_hrct" ).val();
+        $( "#iso_spo_two" ).val();
+    });
+    $(function() {
+        $( "#slider-range2" ).slider({
+        range: true,
+        min: 62,
+        max: 90,
+        //   values: [ 75, 300 ],
+        slide: function( event, ui ) {
+            $( "#iso_pulse" ).val(ui.values[ 1 ] );
+        }
+        });
+        $( "#iso_pulse" ).val();
+    });
+    $(function() {
+        $( "#slider-range3" ).slider({
+        range: true,
+        min: 0,
+        max: 30,
+        //   values: [ 75, 300 ],
+        slide: function( event, ui ) {
+            $( "#iso_rr" ).val(ui.values[ 1 ] );
+        }
+        });
+        $( "#iso_rr" ).val();
     });
 </script>
 <style>

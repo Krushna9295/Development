@@ -8,6 +8,7 @@
                 <div class="row mb-2">
                 <div class="col-sm-6">
                     <h2>{{ $action }}</h2>
+                    
                 </div>
                 <div class=" col-sm-6 form-group text-right">
                     <a class="fas fa-backward" href="{{ route('patient.list') }}"> Go back</a>
@@ -36,47 +37,127 @@
                     <div class="row">
                         <?php $i = 1; ?>
                         @foreach ($patientFollowup as $groups)
-                        <button class="accordion">Followup <?=$i++?></button>
+                        <button class="accordion">Followup <?=$i?></button>
+
+
+                   
+
+                            
                         <div class="panel">
-                            <div class="col-md">
-                                <label>Blood Investigation : </label>
-                                <label>{{$groups->followup_blood_inv}}</label>
-                            </div>
-                            <div class="col-md"> 
-                                <label>HRCT : </label>
-                                <label>{{$groups->followup_hrct}}</label>
-                            </div>
-                            <div class="col-md">
-                                Chest X-Ray : <label>{{$groups->followup_chest_x_ray}}</label>
-                            </div>
-                            <div class="col-md">
-                            <b>Referring Doctor Details : </b>
-                                <p style="margin: 0 0;">
-                                    <lable>Name : </lable><label>{{$groups->followup_ref_doc_name}}</label>
-                                </p>
-                                <p>
-                                    <lable> Contact No : </lable><label>{{$groups->followup_ref_doc_cont_no}}</label>
-                                </p>
-                            </div>
-                            <div class="col-md">
-                                <b>Attending Doctor / Consultant / Physician Details : </b>
-                                <p style="margin: 0 0;">
-                                    <lable>Name : </lable><label>{{$groups->followup_atnd_doc_name}}</label>
-                                </p>
-                                <p>
-                                    <lable> Contact No : </lable><label>{{$groups->followup_atnd_doc_cont_no}}</label>
-                                </p>
-                            </div>
-                            <div class="col-md">
-                                <b>Hospital Detais : </b>
-                                <p style="margin: 0 0;">
-                                    <lable>Name : </lable><label>{{$groups->followup_hosp_name}}</label>
-                                </p>
-                                <p>
-                                    <lable> Contact No : </lable><label>{{$groups->followup_hosp_cont_no}}</label>
-                                </p>
-                            </div>
+
+                        <?php 
+                   // var_dump($i);die();  
+                      if($i==1){
+?>
+                        <div class="col-md">
+                        <label>Blood Investigation : </label>
+                        <label>{{$groups->followup_blood_inv}}</label>
+                    </div>
+                    <div class="col-md"> 
+                        <label>HRCT : </label>
+                        <label>{{$groups->followup_hrct}}</label>
+                    </div>
+                    <div class="col-md">
+                        Chest X-Ray : <label>{{$groups->followup_chest_x_ray}}</label>
+                    </div>
+                    <div class="col-md">
+                    <b>Referring Doctor Details : </b>
+                        <p style="margin: 0 0;">
+                            <lable>Name : </lable><label>{{$groups->followup_ref_doc_name}}</label>
+                        </p>
+                        <p>
+                            <lable> Contact No : </lable><label>{{$groups->followup_ref_doc_cont_no}}</label>
+                        </p>
+                    </div>
+                    <div class="col-md">
+                        <b>Attending Doctor / Consultant / Physician Details : </b>
+                        <p style="margin: 0 0;">
+                            <lable>Name : </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                        </p>
+                        <p>
+                            <lable> Contact No : </lable><label>{{$groups->followup_atnd_doc_cont_no}}</label>
+                        </p>
+                    </div>
+
+                    
+                    <div class="col-md">
+                        <b>Remark : </b><label>{{$groups->followup_hosp_name}}</label>        
+                    </div>
+
+                    <div class="col-md">
+                        <b>Hospital Detais : </b>
+                             <div >
+                            <lable>Name : </lable><label>{{$groups->followup_hosp_name}}</label>
                         </div>
+                        <div >
+                            <lable> Contact No : </lable><label>{{$groups->followup_hosp_cont_no}}</label>
+                            </div>
+                    </div>
+
+<?php
+                        }
+                    
+                           ?>
+
+
+                            
+
+                            <div class="col-md">
+                                <b> Details </b>
+                                <p style="margin: 0 0;">
+                                    <lable>Test Invistigation Advised : </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+                                <p style="margin: 0 0;">
+                                    <lable> Visit Date : </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+                                <p style="margin: 0 0;">
+                                    <lable> Advice Given : </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+                                <p style="margin: 0 0;">
+                                    <lable> Breathlessness : </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+                                <p style="margin: 0 0;">
+                                    <lable> Chest Pain: </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+
+                                <p style="margin: 0 0;">
+                                    <lable> SPO2: </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+                                <p style="margin: 0 0;">
+                                    <lable> Pulse: </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+
+                                <p style="margin: 0 0;">
+                                    <lable> RR: </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+
+                                <p style="margin: 0 0;">
+                                    <lable> Fever: </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+
+                                <p style="margin: 0 0;">
+                                    <lable> Cough: </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+                                <p style="margin: 0 0;">
+                                    <lable> Diarrhea: </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+                                <p style="margin: 0 0;">
+                                    <lable> Comorbility: </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+                                <p style="margin: 0 0;">
+                                    <lable> Call Status: </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+
+                                <p >
+                                    <lable> Close Call: </lable><label>{{$groups->followup_atnd_doc_name}}</label>
+                                </p>
+                            </div>
+
+                            
+
+                            
+                        </div>
+                        <?php $i++ ?>
                         @endforeach
 
                     </div>

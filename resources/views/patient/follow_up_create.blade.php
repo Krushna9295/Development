@@ -137,7 +137,7 @@
                     </div><hr>
                     <div class="row" id="dynamic_field">
                         <div class="col-md-3">
-                            <lable class="">Attending Doctor / Consultant / Physician Details : </lable>
+                            <lable class="">Attending Doctor / Consultant / Physician Details22 : </lable>
                         </div>
                         <div class="col-md-2">
                             <input type="text" class="form-control" name="followup_atnd_doc_name" id="followup_atnd_doc_name" placeholder="Name" value="">

@@ -7,7 +7,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h2>{{ $action }}</h2>
+                   
+                <h2>{{ $action }}</h2>
+                
                 </div>
                 <div class=" col-sm-6 form-group text-right">
                     <a class="fas fa-backward" href="{{ route('patient.list') }}"> Go back</a>
@@ -75,7 +77,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Call Status</label>
-                                <select name="followup_call_status"  id="followup_call_status" class="form-control" autocomplete="off">
+                                <select name="followup_call_status"  id="followup_call_status"  onchange="changeFunc1();" class="form-control" autocomplete="off">
                                     <option value="">Select Status</option>
                                     <option value="1">Call Answered</option>
                                     <option value="2">Call Not Answered</option>
@@ -84,7 +86,7 @@
                                 </select>                             
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2" id="followup_call_not_con_div">
                             <div class="form-group">
                                 <label>Call Not Connected Reason</label>
                                 <select name="followup_call_not_con"  id="followup_call_not_con" class="form-control" autocomplete="off">
@@ -164,7 +166,7 @@
                     </div><hr>
                     <div class="row" id="dynamic_field">
                         <div class="col-md-3">
-                            <lable class="">Attending Doctor / Consultant / Physician Details : </lable>
+                            <lable class="">Attending Doctor / Consultant / Physician Details1 : </lable>
                         </div>
                         <div class="col-md-2">
                             <input type="text" class="form-control" name="followup_atnd_doc_name" id="followup_atnd_doc_name" placeholder="Name" value="">
@@ -236,6 +238,33 @@
 </body>
 </html>
 <script>
+
+$( document ).ready(function() {
+        $('#followup_call_not_con_div').hide();
+       //$('#grievance_div').hide();
+    });
+
+    
+    function changeFunc1() {
+            
+            var followup_call_status = document.getElementById("followup_call_status");
+          
+            var selectedValue = followup_call_status.options[followup_call_status.selectedIndex].value;
+//  alert(selectedValue );
+            if (selectedValue == "3") {
+
+                $('#followup_call_not_con_div').show();
+               
+
+            }  else{
+                
+                $('#followup_call_not_con_div').hide();
+             
+            }
+           
+        }
+
+
     $(".btn-submit").click(function(e){
         e.preventDefault();
         if($('#patient_followup_form').serialize()!=""){

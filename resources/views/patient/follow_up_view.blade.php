@@ -59,7 +59,7 @@
                                 </p>
                             </div>
                             <div class="col-md">
-                                <b>Attending Doctor / Consultant / Physician Details : </b>
+                                <b>Attending Doctor / Consultant / Physician Details33 : </b>
                                 <p style="margin: 0 0;">
                                     <lable>Name : </lable><label>{{$groups->followup_atnd_doc_name}}</label>
                                 </p>

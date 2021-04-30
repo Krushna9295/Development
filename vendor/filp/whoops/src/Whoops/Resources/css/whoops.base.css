@@ -48,6 +48,12 @@ header {
   transition: 0.5s;
 }
 
+.mt-2.text-center.login_image {
+  top: 50%;
+  padding-top: 15% !important;
+}
+
+
   header.header-expand {
     max-height: 1000px;
   }

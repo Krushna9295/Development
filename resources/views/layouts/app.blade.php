@@ -47,6 +47,6 @@
         <main class="py-4 background-image">
             @yield('content')
         </main>
-    </div>
+    <!-- </div> -->
 </body>
 </html>

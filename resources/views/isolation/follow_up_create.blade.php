@@ -71,6 +71,33 @@
                         </div>
                     </div>
                     <hr style="border-top: 2px solid rgb(0 160 230);"/>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Call Status</label>
+                                <select name="followup_call_status"  id="followup_call_status" class="form-control" autocomplete="off">
+                                    <option value="">Select Status</option>
+                                    <option value="1">Call Answered</option>
+                                    <option value="2">Call Not Answered</option>
+                                    <option value="3">Call Not Connect</option>
+                                    <option value="4">Othert</option>
+                                </select>                             
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Call Not Connected Reason</label>
+                                <select name="followup_call_not_con"  id="followup_call_not_con" class="form-control" autocomplete="off">
+                                    <option value="">Select Status</option>
+                                    <option value="1">Switch Off</option>
+                                    <option value="2">Not Reachable</option>
+                                    <option value="3">Wrong Number</option>
+                                    <option value="4">Othert (Text Box)</option>
+                                </select>                             
+                            </div>
+                        </div>
+                    </div>
+
                     <lable class="lableColor">Blood Invistigation</lable><br/>
                     <div class="row" id="dynamic_field">
                         <div class="col-md-1">

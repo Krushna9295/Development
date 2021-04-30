@@ -94,3 +94,8 @@ Route::get('/feedback/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Contr
 //Upload
 Route::get('/upload/create/', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\UploadPatientDataController@create'])->name('upload.create');
 Route::post('/upload/store/', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\UploadPatientDataController@store'])->name('upload.store');
+
+//Home Isolation
+Route::get('/isolation/follow_up_create/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HomeIsolationController@follow_up_create'])->name('isolation.follow_up_create');
+Route::post('/isolation/follow_up_store', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HomeIsolationController@follow_up_store'])->name('isolation.follow_up_store');
+Route::get('/isolation/follow_up_view/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HomeIsolationController@follow_up_view'])->name('isolation.follow_up_view');

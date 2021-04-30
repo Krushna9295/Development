@@ -61,15 +61,31 @@
                                             <!-- <a href="{{ route('patient.edit',$groups->pk_id) }}" title="edit">
                                                 <i class="fa fa-edit text-blue fa-sm"></i>
                                             </a> -->
-                                            <a href="{{ route('patient.follow_up_view',$groups->pk_id) }}" title="Followup View">
+                                            <?php $userGroup = Auth::user()->clg_group;
+                                            if($userGroup == 'UG-ISO') {
+                                            ?>
+                                            <a href="{{ route('isolation.follow_up_view',$groups->pk_id) }}" title="Followup View">
                                                 <i class="fa fa-eye text-green fa-sm"></i>
                                             </a>
+                                            <?php } else {?>
+                                                <a href="{{ route('patient.follow_up_view',$groups->pk_id) }}" title="Followup View">
+                                                    <i class="fa fa-eye text-green fa-sm"></i>
+                                                </a>
+                                            <?php }?>
                                             <a  onclick="if(confirm('Do you want to delete this patient?'))event.preventDefault(); document.getElementById('delete-{{$groups->pk_id}}').submit();" href="{{ route('patient.destroy',$groups->pk_id) }}" title="delete">
                                                 <i class="fa fa-trash text-red fa-sm"></i>
                                             </a>
+                                            <?php $userGroup = Auth::user()->clg_group;
+                                            if($userGroup == 'UG-ISO') {
+                                            ?>
+                                            <a href="{{ route('isolation.follow_up_create',$groups->pk_id) }}" title="Followup Add">
+                                                <i class="fa fa-plus-circle text-green fa-sm"></i>
+                                            </a>
+                                            <?php } else {?>
                                             <a href="{{ route('patient.follow_up_create',$groups->pk_id) }}" title="Followup Add">
                                                 <i class="fa fa-plus-circle text-green fa-sm"></i>
                                             </a>
+                                            <?php }?>
                                             <form id="delete-{{$groups->pk_id}}" method="post" action="{{route('patient.destroy',$groups->pk_id)}}" style="display:none;">
                                             @csrf
                                             {{ method_field('PATCH') }}

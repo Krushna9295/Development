@@ -7,10 +7,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Patient List</h1>
+                        <h1>Panchayat List</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a class="btn btn-primary" href="{{ route('patient.create') }}" role="button">Add New Patient</a>
+                        <a class="btn btn-primary" href="{{ route('panchayat.create') }}" role="button">Add New Panchayat</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -26,7 +26,7 @@
         <!-- <section class="content">
             <div class="row">
                 <div class="col-12 text-right">
-                    <a class="btn btn-primary" href="{{ route('patient.create') }}" role="button">Add New patient</a>
+                    <a class="btn btn-primary" href="{{ route('panchayat.create') }}" role="button">Add New panchayat</a>
                 </div>
             </div>
         </section></br> -->
@@ -36,7 +36,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Patient List</h3>
+                            <h3 class="card-title">Panchayat List</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -44,32 +44,33 @@
                                 <thead>
                                     <tr>
                                         <th>Sr. No</th>
-                                        <th>Patient Name</th>
-                                        <th>Mobile No.</th>
+                                        <th>panchayat Name</th>
+                                        <th>Contact Number</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1; ?>
-                                    @foreach ($patientData as $groups)
+                                    @foreach ($panchayatData as $groups)
                                     <tr>
                                         <td>{{$i++}}</td>
-                                        <td>{{ $groups->ptn_name }}</td>
-                                        <td>{{ $groups->ptn_contact_no }}</td>
+                                        <td>{{ $groups->panchayat_name }}</td>
+                                        <td>{{ $groups->panchayat_contact_no }}</td>
+                                        <td>{{ $groups->panchayat_age }}</td>
+                                        <td>{{ $groups->panchayat_gender }}</td>
                                         <td>
-                                            <!-- <a href="{{ route('patient.edit',$groups->pk_id) }}" title="edit">
+                                            <a href="{{ route('panchayat.edit',$groups->panchayat_id) }}" title="edit">
                                                 <i class="fa fa-edit text-blue fa-sm"></i>
-                                            </a> -->
-                                            <a href="{{ route('patient.follow_up_view',$groups->pk_id) }}" title="Followup View">
+                                            </a>
+                                            <a href="{{ route('panchayat.view',$groups->panchayat_id) }}" title="show">
                                                 <i class="fa fa-eye text-green fa-sm"></i>
                                             </a>
-                                            <a  onclick="if(confirm('Do you want to delete this patient?'))event.preventDefault(); document.getElementById('delete-{{$groups->pk_id}}').submit();" href="{{ route('patient.destroy',$groups->pk_id) }}" title="delete">
+                                            <a  onclick="if(confirm('Do you want to delete this panchayat..?'))event.preventDefault(); document.getElementById('delete-{{$groups->panchayat_id}}').submit();" href="{{ route('panchayat.destroy',$groups->panchayat_id) }}" title="delete">
                                                 <i class="fa fa-trash text-red fa-sm"></i>
                                             </a>
-                                            <a href="{{ route('patient.follow_up_create',$groups->pk_id) }}" title="Followup Add">
-                                                <i class="fa fa-plus-circle text-green fa-sm"></i>
-                                            </a>
-                                            <form id="delete-{{$groups->pk_id}}" method="post" action="{{route('patient.destroy',$groups->pk_id)}}" style="display:none;">
+                                            <form id="delete-{{$groups->panchayat_id}}" method="post" action="{{route('panchayat.destroy',$groups->panchayat_id)}}" style="display: none;">
                                             @csrf
                                             {{ method_field('PATCH') }}
                                             </form>

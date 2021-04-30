@@ -69,7 +69,26 @@
                 <p>Hospital List</p>
               </a>
             </li>
-            
+          </ul>
+        </li>
+        <!-- <li class="nav-item has-treeview menu-open">
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('panchayat.list')}}" class="nav-link">
+                <i class="fa fa-gavel  nav-icon"></i>
+                <p>Panchayat Samiti List</p>
+              </a>
+            </li>
+          </ul>
+        </li> -->
+        <li class="nav-item has-treeview menu-open">
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('feedback.list')}}" class="nav-link">
+                <i class="fa fa-book  nav-icon"></i>
+                <p>Feedback</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item has-treeview menu-open">

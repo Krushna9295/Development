@@ -7,10 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Patient List</h1>
-                    </div>
-                    <div class="col-sm-6 text-right">
-                        <a class="btn btn-primary" href="{{ route('patient.create') }}" role="button">Add New Patient</a>
+                        <h1>Feedback List</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -36,7 +33,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Patient List</h3>
+                            <h3 class="card-title">Feedback List</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -51,7 +48,7 @@
                                 </thead>
                                 <tbody>
                                     <?php $i = 1; ?>
-                                    @foreach ($patientData as $groups)
+                                    @foreach ($feedbackData as $groups)
                                     <tr>
                                         <td>{{$i++}}</td>
                                         <td>{{ $groups->ptn_name }}</td>
@@ -60,15 +57,17 @@
                                             <!-- <a href="{{ route('patient.edit',$groups->pk_id) }}" title="edit">
                                                 <i class="fa fa-edit text-blue fa-sm"></i>
                                             </a> -->
-                                            <a href="{{ route('patient.follow_up_view',$groups->pk_id) }}" title="Followup View">
+                                            <a href="{{ route('feedback.view',$groups->pk_id) }}" title="View Feedback">
                                                 <i class="fa fa-eye text-green fa-sm"></i>
                                             </a>
-                                            <a  onclick="if(confirm('Do you want to delete this patient?'))event.preventDefault(); document.getElementById('delete-{{$groups->pk_id}}').submit();" href="{{ route('patient.destroy',$groups->pk_id) }}" title="delete">
+                                            <!-- <a  onclick="if(confirm('Do you want to delete this patient?'))event.preventDefault(); document.getElementById('delete-{{$groups->pk_id}}').submit();" href="{{ route('patient.destroy',$groups->pk_id) }}" title="delete">
                                                 <i class="fa fa-trash text-red fa-sm"></i>
-                                            </a>
-                                            <a href="{{ route('patient.follow_up_create',$groups->pk_id) }}" title="Followup Add">
+                                            </a> -->
+                                            <?php if($groups->ptn_feedback_status == '0'){ ?>
+                                            <a href="{{ route('feedback.create',$groups->pk_id) }}" title="Add Feedback">
                                                 <i class="fa fa-plus-circle text-green fa-sm"></i>
                                             </a>
+                                            <?php }?>
                                             <form id="delete-{{$groups->pk_id}}" method="post" action="{{route('patient.destroy',$groups->pk_id)}}" style="display:none;">
                                             @csrf
                                             {{ method_field('PATCH') }}

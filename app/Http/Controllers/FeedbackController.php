@@ -39,7 +39,7 @@ class FeedbackController extends Controller
             'ptn_id' => $request->patientId,
             'ptn_feed_ques' => json_encode($request->ptn_feed_ques),
             'ptn_feed_remark' => $request->ptn_feed_remark,
-            'ptn_feed_added_by' => Auth::user()->clg_first_name
+            'ptn_feed_added_by' => Auth::user()->clg_ref_id
         );
         $ptn['ptn_feedback_status'] = '1';
         $feedQues = $request->ptn_feed_ques;

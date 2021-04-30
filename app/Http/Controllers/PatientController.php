@@ -28,7 +28,7 @@ class PatientController extends Controller
         $district = DB::table('tdd_mas_districts')->where('dstis_deleted', '0')->orderBy('dst_name', 'ASC')->get();
         $tahsil = DB::table('tdd_mas_tahshil')->where('thlis_deleted', '0')->orderBy('thl_name', 'ASC')->get();
         $city = DB::table('tdd_mas_city')->where('ctyis_deleted', '0')->orderBy('cty_name', 'ASC')->get();
-        // $school = DB::table('tdd_school')->where('school_isdeleted', '0')->orderBy('school_name', 'ASC')->get();
+        
         $oral_medicine = DB::table('tdd_mas_patient_medicine')->where('med_is_deleted', '0')->orderBy('med_name', 'ASC')->get();
         $injectable = DB::table('tdd_mas_patient_injectable')->where('inj_is_deleted', '0')->orderBy('inj_name', 'ASC')->get();
         $comorbidity = DB::table('tdd_mas_patient_comorbidity')->where('com_is_deleted', '0')->orderBy('com_name', 'ASC')->get();
@@ -97,8 +97,8 @@ class PatientController extends Controller
             'ptn_oral_medicine' => json_encode($request->ptn_oral_medicine),
             'ptn_injectable' => json_encode($request->ptn_injectable),
             'ptn_isdeleted' => '0',
-            'added_by' => Auth::user()->clg_first_name,
-            'modify_by' => Auth::user()->clg_first_name,
+            'added_by' => Auth::user()->clg_ref_id,
+            'modify_by' => Auth::user()->clg_ref_id,
             'added_date' => date('Y-m-d H:i:s')
         );
         // print_r($data);die;
@@ -114,7 +114,7 @@ class PatientController extends Controller
         $district = DB::table('tdd_mas_districts')->where('dstis_deleted', '0')->orderBy('dst_name', 'ASC')->get();
         $tahsil = DB::table('tdd_mas_tahshil')->where('thlis_deleted', '0')->orderBy('thl_name', 'ASC')->get();
         $city = DB::table('tdd_mas_city')->where('ctyis_deleted', '0')->orderBy('cty_name', 'ASC')->get();
-        $school = DB::table('tdd_school')->where('school_isdeleted', '0')->orderBy('school_name', 'ASC')->get();
+        
         $patient = patient::patientRecWithId($patientId);
         $action = 'Update Patient';
         $disabled = "";
@@ -128,8 +128,7 @@ class PatientController extends Controller
                     'state' => $state,
                     'district' => $district,
                     'tahsil' => $tahsil,
-                    'city' => $city,
-                    'school' => $school ]);
+                    'city' => $city ]);
     }
     public function update(Request $request, $patientId)
     {
@@ -144,7 +143,6 @@ class PatientController extends Controller
             'ptn_adhar_no' => '',
             'ptn_ins_no' => '',
             'deworning' => '',
-            'ptn_school_id' => 'required',
             'ptn_address' => '',
             'ptn_district' => '',
             'ptn_city' => '',
@@ -166,7 +164,6 @@ class PatientController extends Controller
                 'ptn_adhar_no' => $request->ptn_adhar_no,
                 'ptn_ins_no' => $request->ptn_ins_no,
                 'deworning' => $request->deworning,
-                'ptn_school_id' => $request->ptn_school_id,
                 'ptn_address' => $request->ptn_address,
                 'ptn_state' => $request->ptn_state,
                 'ptn_district' => $request->ptn_district,
@@ -190,7 +187,7 @@ class PatientController extends Controller
         $district = DB::table('tdd_mas_districts')->where('dstis_deleted', '0')->orderBy('dst_name', 'ASC')->get();
         $tahsil = DB::table('tdd_mas_tahshil')->where('thlis_deleted', '0')->orderBy('thl_name', 'ASC')->get();
         $city = DB::table('tdd_mas_city')->where('ctyis_deleted', '0')->orderBy('cty_name', 'ASC')->get();
-        $school = DB::table('tdd_school')->where('school_isdeleted', '0')->orderBy('school_name', 'ASC')->get();
+        
         $patient = patient::patientRecWithId($patientId);
         $action = 'View patient';
         $disabled = "disabled = 'disabled'";
@@ -201,8 +198,7 @@ class PatientController extends Controller
             'state' => $state,
             'district' => $district,
             'tahsil' => $tahsil,
-            'city' => $city,
-            'school' => $school ]);
+            'city' => $city ]);
     }
     public function destroy($patientId)
     {
@@ -236,7 +232,7 @@ class PatientController extends Controller
             'followup_hosp_cont_no' => $request->followup_hosp_cont_no,
             'followup_status' => $request->followup_status,
             'followup_remark' => $request->followup_remark,
-            'followup_added_by' => Auth::user()->clg_first_name,
+            'followup_added_by' => Auth::user()->clg_ref_id,
             'followup_added_date' => date('Y-m-d H:i:s')
         );
         $ptn['ptn_status'] = $request->followup_status;

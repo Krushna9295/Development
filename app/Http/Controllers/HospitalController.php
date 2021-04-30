@@ -51,7 +51,6 @@ class HospitalController extends Controller
         $validatedData = Validator::make($request->all(), [
             'hp_name' => 'required|alpha',
             'hp_type' => 'required',
-            'hp_area_type' => 'required',
             'hp_mobile' => ['required', 'numeric', 'digits_between:10,12'],
             'hp_register_no' => 'required|numeric',
             'hp_email' => 'email',
@@ -62,7 +61,6 @@ class HospitalController extends Controller
             'hp_district' => 'required',
             'hp_tahsil' => 'required',
             'hp_city' => 'required',
-            'hp_area' => '',
             'hp_landmark' => '',
             'hp_lane_street' => '',
             'hp_house_no' => '',
@@ -71,7 +69,6 @@ class HospitalController extends Controller
         $data = array(
             'hp_name' => $request->hp_name,
             'hp_type' => $request->hp_type,
-            'hp_area_type' => $request->hp_area_type,
             'hp_mobile' => $request->hp_mobile,
             'hp_register_no' => $request->hp_register_no,
             'hp_email' => $request->hp_email,
@@ -82,13 +79,12 @@ class HospitalController extends Controller
             'hp_district' => $request->hp_district,
             'hp_tahsil' => $request->hp_tahsil,
             'hp_city' => $request->hp_city,
-            'hp_area' => $request->hp_area,
             'hp_landmark' => $request->hp_landmark,
             'hp_lane_street' => $request->hp_lane_street,
             'hp_house_no' => $request->hp_house_no,
             'hp_pincode' => $request->hp_pincode,
             'hpis_deleted' => '0',
-            'hp_added_by' => Auth::user()->clg_first_name,
+            'hp_added_by' => Auth::user()->clg_ref_id,
             'hp_added_date' => date('Y-m-d H:i:s')
         );
         if ($validatedData->passes()) {
@@ -125,7 +121,6 @@ class HospitalController extends Controller
         $validatedData = Validator::make($request->all(), [
             'hp_name' => 'required|alpha',
             'hp_type' => 'required',
-            'hp_area_type' => 'required',
             'hp_mobile' => ['required', 'numeric', 'digits_between:10,12'],
             'hp_register_no' => 'required|numeric',
             'hp_email' => 'email',
@@ -136,7 +131,6 @@ class HospitalController extends Controller
             'hp_district' => 'required',
             'hp_tahsil' => 'required',
             'hp_city' => 'required',
-            'hp_area' => '',
             'hp_landmark' => '',
             'hp_lane_street' => '',
             'hp_house_no' => '',
@@ -146,7 +140,6 @@ class HospitalController extends Controller
         $data = array(
             'hp_name' => $request->hp_name,
             'hp_type' => $request->hp_type,
-            'hp_area_type' => $request->hp_area_type,
             'hp_mobile' => $request->hp_mobile,
             'hp_register_no' => $request->hp_register_no,
             'hp_email' => $request->hp_email,
@@ -157,13 +150,12 @@ class HospitalController extends Controller
             'hp_district' => $request->hp_district,
             'hp_tahsil' => $request->hp_tahsil,
             'hp_city' => $request->hp_city,
-            'hp_area' => $request->hp_area,
             'hp_landmark' => $request->hp_landmark,
             'hp_lane_street' => $request->hp_lane_street,
             'hp_house_no' => $request->hp_house_no,
             'hp_pincode' => $request->hp_pincode,
             'hpis_deleted' => '0',
-            'hp_added_by' => Auth::user()->clg_first_name,
+            'hp_added_by' => Auth::user()->clg_ref_id,
             'hp_added_date' => date('Y-m-d H:i:s')
         );
 

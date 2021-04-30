@@ -60,9 +60,9 @@
                             <label>Gender</label>
                             <select class="form-control" name="ptn_gender" id="ptn_gender" {{$disabled}}>
                                 <option value="">Select Gender</option>
-                                <option value="male" @if(isset($patient)) {{ ($patient->ptn_gender == 'male') ? 'selected' : ''}} @endif>Male</option>
-                                <option value="female" @if(isset($patient)) {{ ($patient->ptn_gender == 'female') ? 'selected' : ''}} @endif>Female</option>
-                                <option value="other" @if(isset($patient)) {{ ($patient->ptn_gender == 'other') ? 'selected' : ''}} @endif>Other</option>
+                                <option value="Male" @if(isset($patient)) {{ ($patient->ptn_gender == 'Male') ? 'selected' : ''}} @endif>Male</option>
+                                <option value="Female" @if(isset($patient)) {{ ($patient->ptn_gender == 'Female') ? 'selected' : ''}} @endif>Female</option>
+                                <option value="Other" @if(isset($patient)) {{ ($patient->ptn_gender == 'Other') ? 'selected' : ''}} @endif>Other</option>
                             </select>
                             <span class="text-danger error-text ptn_gender_err"></span>                            </div>
                         </div>

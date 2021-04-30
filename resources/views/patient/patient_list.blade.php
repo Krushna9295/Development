@@ -10,6 +10,7 @@
                         <h1>Patient List</h1>
                     </div>
                     <div class="col-sm-6 text-right">
+                        <a class="btn btn-primary" href="{{ route('upload.create') }}" role="button">Upload Data</a>
                         <a class="btn btn-primary" href="{{ route('patient.create') }}" role="button">Add New Patient</a>
                     </div>
                 </div>

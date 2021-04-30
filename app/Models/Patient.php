@@ -32,7 +32,7 @@ class Patient extends Model
         // print_r($chk_rec);die;
         if(count($chk_rec) == 0){
             // echo '1';
-            $data['added_by'] = Auth::user()->clg_first_name;
+            $data['added_by'] = Auth::user()->clg_ref_id;
             $data['added_date'] = date('Y-m-d H:i:s');
             $data['patient_id'] = $ptn_id;
             $chk_rec = DB::table('tdd_patient_basic_info')
@@ -40,7 +40,7 @@ class Patient extends Model
                     ->insert($data);
         }else{ 
             // echo '2';
-            $data['modify_by'] = Auth::user()->clg_first_name;
+            $data['modify_by'] = Auth::user()->clg_ref_id;
             $data['modify_date'] = date('Y-m-d H:i:s');
             $chk_rec = DB::table('tdd_patient_basic_info')
                     ->where('patient_id',$ptn_id)

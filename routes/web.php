@@ -42,6 +42,7 @@ Route::patch('/patient/destroy/{_id}', ['middleware' => 'auth', 'uses' => 'App\H
 Route::get('/patient/follow_up_create/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@follow_up_create'])->name('patient.follow_up_create');
 Route::post('/patient/follow_up_store', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@follow_up_store'])->name('patient.follow_up_store');
 Route::get('/patient/follow_up_view/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\PatientController@follow_up_view'])->name('patient.follow_up_view');
+
 //Hospital
 Route::get('hospital/list', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HospitalController@index'])->name('hospital.list');
 Route::get('hospital/create', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HospitalController@create'])->name('hospital.create');
@@ -89,3 +90,7 @@ Route::get('feedback/list', ['middleware' => 'auth', 'uses' => 'App\Http\Control
 Route::get('feedback/create/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\FeedbackController@create'])->name('feedback.create');
 Route::post('feedback/store', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\FeedbackController@store'])->name('feedback.store');
 Route::get('/feedback/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\FeedbackController@show'])->name('feedback.view');
+
+//Upload
+Route::get('/upload/create/', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\UploadPatientDataController@create'])->name('upload.create');
+Route::post('/upload/store/', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\UploadPatientDataController@store'])->name('upload.store');

@@ -88,7 +88,7 @@ class PanchayatController extends Controller
             'hp_house_no' => $request->hp_house_no,
             'hp_pincode' => $request->hp_pincode,
             'hpis_deleted' => '0',
-            'hp_added_by' => Auth::user()->clg_first_name,
+            'hp_added_by' => Auth::user()->clg_ref_id,
             'hp_added_date' => date('Y-m-d H:i:s')
         );
         if ($validatedData->passes()) {
@@ -164,7 +164,7 @@ class PanchayatController extends Controller
             'hp_house_no' => $request->hp_house_no,
             'hp_pincode' => $request->hp_pincode,
             'hpis_deleted' => '0',
-            'hp_added_by' => Auth::user()->clg_first_name,
+            'hp_added_by' => Auth::user()->clg_ref_id,
             'hp_added_date' => date('Y-m-d H:i:s')
         );
         if ($validatedData->passes()) {

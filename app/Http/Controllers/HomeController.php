@@ -24,11 +24,19 @@ class HomeController extends Controller
     public function index()
     {
         $clg_group = Auth::user()->clg_group;
+      // var_dump($clg_group);die();
         if($clg_group == 'A'){
             // return view('dash/dash');
             return redirect()->action('App\Http\Controllers\DashController@index');
-        }else{
-            return redirect()->action('App\Http\Controllers\CallsController@atnd_call');
+        }elseif($clg_group == 'UG-ISO')
+        {
+            // return view('home',compact( 'Bins','Vehicle','Bins_count','Users_count','Dumps_count','Vehicle_count'));
+            return view('dash.isolation_dash');
+            // return view('dashboard.home1');
+        }
+        else{
+            return redirect()->action('App\Http\Controllers\DashController@index');
+
         }
     }
 }

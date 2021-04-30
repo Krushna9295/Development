@@ -14,7 +14,7 @@ class Users extends Model
 {
     // use HasFactory;
     protected $collection = 'users';
-    protected $fillable = ['clg_first_name', 'clg_mid_name','clg_last_name','clg_mobile_no','email','password','clg_dob','clg_joining_date','clg_group','clg_ref_id','clg_atc','clg_cluster','clg_city','clg_gender','clg_marital_status','clg_address','clg_current_salary','clg_po','clg_image','clg_is_deleted', 'updated_at', 'created_at'];
+    protected $fillable = ['clg_first_name', 'clg_mid_name','clg_last_name','clg_mobile_no','email','clg_dob','password','clg_joining_date','clg_group','clg_ref_id','clg_gender','clg_state','clg_district','clg_tahsil','clg_city','clg_marital_status','clg_address','clg_is_deleted', 'updated_at', 'created_at'];
 
     public static function get_users(){
         return  DB::table('users') 

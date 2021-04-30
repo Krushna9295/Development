@@ -3,12 +3,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
-
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers;
-use App\Models\Area;
-use App\Models\Atc;
 use App\Models\Users;
-use App\Models\Po;
 use App\Models\Cluster;
 use App\Models\Groups;
 use App\Models\Hospital_type;
@@ -32,18 +29,21 @@ class UserController extends Controller
         return view('user/user_list',['userData' => $userData]);
     }
     public function create(){
-        // $po = Po::get_Po(); 
-        // $cluster = Cluster::get_cluster();
-        // $atc = Atc::get_Atc(); 
-        $groups = Groups::get_groups();      
-        // $area = Area::get_area_type();  
-        $city = City::get_City();   
+  
+        $groups = Groups::get_groups();   
+        $state = State::get_State();
+        $district = District::get_District();
+        $tahsil = Tahsil::get_tahsil();
+        $city = City::get_City(); 
         $action = 'Register New User';
         $disabled = "";
         $form_submit_url = "route('user.store')";
         return view('user/user_view',[  
                                 // 'cluster' => $cluster,
                                 'groups' => $groups,
+                                'state' => $state,
+                                'district' => $district,
+                                'tahsil' => $tahsil,
                                 // 'atc' => $atc,
                                 // 'po' => $po,
                                 'form_submit_url'=> $form_submit_url, 
@@ -52,29 +52,31 @@ class UserController extends Controller
                                 'city' => $city ]);
     }
     public function store(Request $request){  
-     //    var_dump( $request->image);die();
+     
         $validatedData = Validator::make($request->all(),[
+
             'clg_first_name' => 'required',
             'clg_mid_name' => '',
             'clg_last_name' => 'required',
-            'clg_mobile_no' => ['required', 'numeric', 'digits_between:10,12'],
+            'clg_mobile_no' =>  ['required', 'numeric', 'digits_between:10,12'],
             'email' => 'email|unique:Users',
             'clg_dob' => 'required',
+            'clg_password' => 'required',
             'clg_joining_date' => 'required',
             'clg_group' => 'required',
             'clg_ref_id' => 'required',
-            'clg_password' => 'required',
-            'clg_atc' => 'required',
-            'clg_cluster' => 'required',
-            'clg_city' => '',
             'clg_gender' => 'required',
+            'clg_state' => '',
+            'clg_district' => '',
+            'clg_tahsil' => '',
+            'clg_city' => '',
             'clg_marital_status' => 'required',
             'clg_address' => '',
-            'clg_current_salary' => '',
-            'clg_po' => 'required',
-            // 'clg_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // 'clg_resume' => 'required|mimes:pdf,doc,docx|max:2048',
         ]);
+                    
+       $request->clg_password =  Hash::make($request->clg_password);
+
+
         $data = array(
             'clg_first_name' => $request->clg_first_name,
             'clg_mid_name' => $request->clg_mid_name,
@@ -86,28 +88,17 @@ class UserController extends Controller
             'clg_group' => $request->clg_group,
             'clg_ref_id' => $request->clg_ref_id,
             'password' => $request->clg_password,
-            'clg_atc' => $request->clg_atc,
-            'clg_cluster' => $request->clg_cluster,
-            'clg_city' => $request->clg_city,
             'clg_gender' => $request->clg_gender,
+            'clg_state' => $request->clg_state,
+            'clg_district' => $request->clg_district,
+            'clg_tahsil' => $request->clg_tahsil,
+            'clg_city' => $request->clg_city,
             'clg_marital_status' => $request->clg_marital_status,
             'clg_address' => $request->clg_address,
-            'clg_current_salary' => $request->clg_current_salary,
-            'clg_po' => $request->clg_po,
             'clg_is_deleted' => '0',
             'clg_status' => 'active'
         );
-            
-        // $ResumeName = time().'.'.$request->clg_resume->extension();
-        // $request->clg_resume->move(public_path('Resume'), $ResumeName);
-        // $imageName = time().'.'.$request->clg_image->extension();
-        // $request->clg_image->move(public_path('images'), $imageName);
-        // $data['clg_image']=  $imageName;
-        // $data['clg_status']= "Active";
 
-    //   $validatedData['clg_group']= new ObjectId($validatedData['clg_group']);
-        // $data['clg_is_deleted'] = 0;
-        // $show = Users::create($validatedData);
 
         if ($validatedData->passes()) {
             $student = DB::table('users')->insert($data);
@@ -117,55 +108,57 @@ class UserController extends Controller
         // return redirect()->route('user.list')->with('success','User Registration Successfully.');
         
     }
+    
     public function edit($userId)
     { 
-        // $student = Student::find($user);
-        $po = Po::get_Po(); 
-        $cluster = Cluster::get_cluster();
-        $atc = Atc::get_Atc(); 
+    
         $groups = Groups::get_groups();      
-        $area = Area::get_area_type();  
         $user = Users::get_user_as_per_id($userId);
+        $state = State::get_State();
+        $district = District::get_District();
+        $tahsil = Tahsil::get_tahsil();
         $city = City::get_City(); 
         $action = 'Update User';
         $disabled = "";
         $userId = $user[0]->id;
         $form_submit_url = "user.update, $userId";
-        return view('user.user_view', [
-                                'cluster' => $cluster,
+        return view('user.user_view', [ 
                                 'groups' => $groups,
-                                'atc' => $atc,
-                                'po' => $po,
+                                'state' => $state,
+                                'district' => $district,
+                                'tahsil' => $tahsil,
+                                'city' => $city,
                                 'form_submit_url'=> $form_submit_url, 
                                 'action'=> $action,
                                 'disabled' => $disabled,
-                                'user' => $user[0],
-                                'city' => $city ]);
+                                'user' => $user[0] ]);
     }
+
     public function update(Request $request, $userId)
     {
+
+       // var_dump('hi');die();
         $validatedData = Validator::make($request->all(),[
             'clg_first_name' => 'required',
             'clg_mid_name' => '',
             'clg_last_name' => 'required',
-            'clg_mobile_no' => ['required', 'numeric', 'digits_between:10,12'],
+            'clg_mobile_no' =>  ['required', 'numeric', 'digits_between:10,12'],
             'email' => 'required',
             'clg_dob' => 'required',
+            'clg_password' => 'required',
             'clg_joining_date' => 'required',
             'clg_group' => 'required',
             'clg_ref_id' => 'required',
-            'clg_password' => 'required',
-            'clg_atc' => 'required',
-            'clg_cluster' => 'required',
-            'clg_city' => '',
             'clg_gender' => 'required',
+            'clg_state' => '',
+            'clg_district' => '',
+            'clg_tahsil' => '',
+            'clg_city' => '',
             'clg_marital_status' => 'required',
             'clg_address' => '',
-            'clg_current_salary' => '',
-            'clg_po' => 'required',
-            // 'clg_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // 'clg_resume' => 'required|mimes:pdf,doc,docx|max:2048',
+          
         ]);
+        $request->clg_password =  Hash::make($request->clg_password);
         $data = array(
             'clg_first_name' => $request->clg_first_name,
             'clg_mid_name' => $request->clg_mid_name,
@@ -177,14 +170,13 @@ class UserController extends Controller
             'clg_group' => $request->clg_group,
             'clg_ref_id' => $request->clg_ref_id,
             'password' => $request->clg_password,
-            'clg_atc' => $request->clg_atc,
-            'clg_cluster' => $request->clg_cluster,
-            'clg_city' => $request->clg_city,
             'clg_gender' => $request->clg_gender,
+            'clg_state' => $request->clg_state,
+            'clg_district' => $request->clg_district,
+            'clg_tahsil' => $request->clg_tahsil,
+            'clg_city' => $request->clg_city,
             'clg_marital_status' => $request->clg_marital_status,
             'clg_address' => $request->clg_address,
-            'clg_current_salary' => $request->clg_current_salary,
-            'clg_po' => $request->clg_po,
             'clg_is_deleted' => '0',
             'clg_status' => 'active'
         );
@@ -196,11 +188,10 @@ class UserController extends Controller
     }
     public function show($userId)
     {
-        $po = Po::get_Po(); 
-        $cluster = Cluster::get_cluster();
-        $atc = Atc::get_Atc(); 
-        $groups = Groups::get_groups();      
-        $area = Area::get_area_type();  
+        $state = State::get_State();
+        $district = District::get_District();
+        $tahsil = Tahsil::get_tahsil();
+        $groups = Groups::get_groups();       
         $user = Users::get_user_as_per_id($userId);
         $city = City::get_City(); 
         $action = 'View User';
@@ -208,16 +199,18 @@ class UserController extends Controller
         $userId = $user[0]->id;
         $form_submit_url = "user.update, $userId";
         return view('user.user_view', [  
-            'po' => $po,
-            'cluster' => $cluster,
+           
             'groups' => $groups,
-            'atc' => $atc,
+            'state' => $state,
+            'district' => $district,
+            'tahsil' => $tahsil,                
             'form_submit_url'=> $form_submit_url, 
             'action'=> $action,
             'disabled' => $disabled,
             'user' => $user[0],
             'city' => $city ]);
     }
+
     public function destroy($userId)
     {
       $updated_data = ['clg_is_deleted'=> '1'];
@@ -229,17 +222,21 @@ class UserController extends Controller
     
     public function fetch_clg_ref_id(Request $request)
     {
+        
+    //  var_dump($request->gcode);die();
+      //  $group_data = Groups::where('gcode', $request->gcode)->get();
+      
+        $group_data =  DB::table('tdd_mas_groups as grp') 
+        ->where('gcode', $request->gcode)
+                ->get();
     
-        $group_data = Groups::where('ugname', $request->clg_gp_name)->get();
-
-        $name=  $group_data[0]->gcode;
-       
+        $name=  $group_data[0]->ugname;
         $user_data = Users::where('clg_ref_id','like',"%$name%")->get();
-       
+  
         if(sizeof($user_data) > 0)
         {
             $clg_data= array();
-
+           
             foreach($user_data as $res){
            
                 $clg_data[] = (preg_replace("/[a-zA-Z]+-/", "", $res->clg_ref_id));
@@ -247,11 +244,14 @@ class UserController extends Controller
             }
           
             $value = max($clg_data); 
+            //var_dump( $value);die();
             $temp = ++$value;
+               // var_dump($temp);die();
         }else{
             $temp=1;
         }
         $clg_new_id = "$name-".$temp;
+        //var_dump(   $clg_new_id);die();
         return response()->json($clg_new_id);
     }
 }

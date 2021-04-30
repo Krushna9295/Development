@@ -13,4 +13,5 @@ class Groups extends Model
             ->where('grp.is_deleted','0')
             ->get();
     }
+    
 }

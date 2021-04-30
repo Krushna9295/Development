@@ -6,12 +6,12 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h2>{{ $action }}</h2>
-                </div>
-                <div class=" col-sm-6 form-group text-right">
-                    <a class="fas fa-backward" href="{{ route('user.list') }}"> Go back</a>
-                </div>
+                    <div class="col-sm-6">
+                        <h2>{{ $action }}</h2>
+                    </div>
+                    <div class=" col-sm-6 form-group text-right">
+                        <a class="fas fa-backward" href="{{ route('user.list') }}"> Go back</a>
+                    </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -53,7 +53,7 @@
                         
                         <div class="col-md-3">
                             <div class="form-group">
-                            <label>First Name</label>
+                                <label>First Name</label>
                                 <input type="text" class="form-control select2" id="clg_first_name" name="clg_first_name" placeholder="First Name" style="width: 100%;" value="{{ isset($user) ? $user->clg_first_name : '' }}" {{$disabled}} >
                                 <span class="text-danger error-text clg_first_name_err"></span>
                             </div>
@@ -113,7 +113,7 @@
                                 <option value="">Select Area</option>
                                 @foreach ($groups as $groups)
 
-                                <option  value="{{ $groups->gid }}"  @if(isset($user)){{($groups->gid == $user->clg_group) ? 'selected' : ''}} @endif> {{{ $groups->ugname }}}</option>
+                                <option  value="{{ $groups->gcode }}"  @if(isset($user)){{($groups->gcode == $user->clg_group) ? 'selected' : ''}} @endif> {{{ $groups->ugname }}}</option>
                             
                                 @endforeach
                                 </select>
@@ -137,35 +137,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>City</label>
-                                <!-- <input type="text" class="form-control" name="clg_city" id="clg_city" placeholder="Enter City" style="width: 100%;" value="{{ isset($user) ? $user->clg_city : '' }}" {{$disabled}} autocomplete="off"> -->
-                                <select name="hp_city"  id="city" class="form-control" {{$disabled}} autocomplete="off">
-                                <option value="">Select City</option>
-                                @foreach ($city as $groups)
 
-                                <option  value="{{ $groups->cty_id }}"  @if(isset($hospital)){{($groups->cty_id == $hospital->hp_city) ? 'selected' : ''}} @endif> {{{ $groups->cty_name }}}</option>
-                            
-                                @endforeach
-                                </select>
-                            </div>
-                        </div>
-                         
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Current Salary(INR)</label>
-                                <input type="text" class="form-control" name="clg_current_salary" id="clg_current_salary" placeholder="Current Salary(INR)" style="width: 100%;" value="{{ isset($user) ? $user->clg_current_salary : '' }}" {{$disabled}} autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Address</label></br>
-                                <input type="text" class="form-control" name="clg_address" id="clg_address" onFocus="geocoding_add(clg_address, clg_lat, clg_long)"  placeholder="Address" style="width: 100%;" value="{{ isset($user) ? $user->clg_address : '' }}" {{$disabled}} autocomplete="off">                                
-                            </div>
-                        </div>
-
-                         
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>User Gender</label>
@@ -187,7 +159,6 @@
                                 <label>Marital Status</label>
 
                                 <select name="clg_marital_status" class="form-control" {{$disabled}}>
-                                
                                 <option value="">Select Marital Status</option>
                                 <option value="Married" @if(isset($user)){{("Married" == $user->clg_marital_status) ? 'selected' : ''}} @endif>Married</option>
                                 <option value="Unmarried" @if(isset($user)){{("Unmarried" == $user->clg_marital_status) ? 'selected' : ''}} @endif> Unmarried</option>
@@ -195,30 +166,67 @@
                                 <span class="text-danger error-text clg_marital_status_err"></span>
                             </div>
                         </div>
-                        
 
-
-
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label>Upload Photo</label>
-
-                                <input type="file" name="clg_image" class="form-control">
-                                <span class="text-danger error-text clg_image_err"></span>
+                            <label>Address</label></br>
+                            <input type="text" class="form-control" name="clg_address" id="inc_map_address" placeholder="Address" style="width: 100%;" value="{{ isset($user) ? $user->clg_address : '' }}" {{$disabled}}>
                             </div>
                         </div>
 
-
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
-                                <label>Upload Resume</label>
+                            <label>State</label>
+                            <select id="state" name="clg_state" class="form-control" {{$disabled}} >
+                                <option value="">Select State</option>
+                                @foreach ($state as $groups)
 
-                                <input type="file" name="clg_resume" class="form-control">
-                                <span class="text-danger error-text clg_resume_err"></span>
+                                <option  value="{{ $groups->st_code }}"  @if(isset($user)){{($groups->st_code == $user->clg_state) ? 'selected' : ''}} @endif> {{{ $groups->st_name }}}</option>
+                            
+                                @endforeach
+                            </select>                            
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>District</label>
+                                <select id="district" name="clg_district" class="form-control" {{$disabled}} autocomplete="off">
+                                    <option value="">Select District</option>
+                                    @foreach ($district as $groups)
+                                    <option  value="{{ $groups->dst_code }}"  @if(isset($user)){{($groups->dst_code == $user->clg_district) ? 'selected' : ''}} @endif> {{{ $groups->dst_name }}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Tahsil</label>
+                                <select name="clg_tahsil"  id="tahshil" class="form-control" {{$disabled}} autocomplete="off">
+                                <option value="">Select Tahsil</option>
+                                @foreach ($tahsil as $groups)
+
+                                <option  value="{{ $groups->thl_code }}"  @if(isset($user)){{($groups->thl_code == $user->clg_tahsil) ? 'selected' : ''}} @endif> {{{ $groups->thl_name }}}</option>
+                            
+                                @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>City</label>
+                                <select name="clg_city"  id="city" class="form-control" {{$disabled}} autocomplete="off">
+                                    <option value="">Select City</option>
+                                    @foreach ($city as $groups)
+
+                                    <option  value="{{ $groups->cty_id }}"  @if(isset($user)){{($groups->cty_id == $user->clg_city) ? 'selected' : ''}} @endif> {{{ $groups->cty_name }}}</option>
+                                
+                                    @endforeach
+                                    </select>                            
                             </div>
                         </div>
                     </div>
-
                                 
                     @if($action != "View User")
                     <div class="row">
@@ -250,15 +258,15 @@
 <script>
 function myFunction() {
   //var x = document.getElementById("mySelect").value;
- var clg_gp_name = $("#mySelect :selected").text();
-//  var id  = x;
+ var clg_gp_name = $("#mySelect :selected").val();
+
 // alert(clg_gp_name);
  let _url1 = base_url+`/fetch_clg_ref_id/${clg_gp_name}`;
 
                 $.ajax({
                     type: 'GET',
                     url: _url1,
-                    data: {clg_gp_name: clg_gp_name},
+                    data: {gcode: clg_gp_name},
                     dataType: 'json',
                     success: function (data) {
                         if(data){
@@ -294,6 +302,7 @@ function myFunction() {
                 $url = "{{action('App\Http\Controllers\UserController@update',"$user->id" )}}";
             <?php }?>
         }
+        
         var formData = form.serialize();
         $.ajax({
             headers: {

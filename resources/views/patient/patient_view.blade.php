@@ -86,7 +86,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                             <label>Address</label></br>
-                            <!-- <input type="text" name="incient[place]" style="" id="inc_map_address" class="form-control form-control-sm" placeholder="Type Incidence Address Here*" value="<?php if(isset($post['inc_address'])){ echo $post['inc_address'];}  ?>" TABINDEX="11" data-ignore="ignore" data-state="yes" data-dist="yes" data-thl="yes" data-city="yes" data-rel="incient" data-auto="inc_auto_addr"> -->
+                            
                             <input type="text" class="form-control" name="ptn_address" id="inc_map_address" placeholder="Address" style="width: 100%;" value="{{ isset($patient) ? $patient->ptn_address : '' }}" {{$disabled}}>
                             </div>
                         </div>

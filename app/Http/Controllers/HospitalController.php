@@ -5,7 +5,7 @@ use DB;
 use Auth;
 use App\Http\Controllers;
 
-use App\Models\Area;
+
 use App\Models\Hospital_type;
 use App\Models\State;
 use App\Models\District;
@@ -29,7 +29,7 @@ class HospitalController extends Controller
     }
     public function create(){
         $hospital_type = Hospital_type::get_hospital_type();     
-        // $area = Area::get_area_type();     
+  
         $state = State::get_State();
         $district = District::get_District();
         $tahsil = Tahsil::get_tahsil();
@@ -43,7 +43,6 @@ class HospitalController extends Controller
                                 'tahsil' => $tahsil,
                                 'city' => $city,
                                 'hospital_type' => $hospital_type,
-                                // 'area' => $area,
                                 'form_submit_url'=> $form_submit_url, 
                                 'action'=> $action,
                                 'disabled' => $disabled ]);
@@ -100,8 +99,7 @@ class HospitalController extends Controller
     }
     public function edit($hospitalId)
     { 
-        $hospital_type = Hospital_type::get_hospital_type();     
-        $area = Area::get_area_type();     
+        $hospital_type = Hospital_type::get_hospital_type();          
         $state = State::get_State();
         $district = District::get_District();
         $tahsil = Tahsil::get_tahsil();
@@ -117,7 +115,6 @@ class HospitalController extends Controller
                                 'tahsil' => $tahsil,
                                 'city' => $city,
                                 'hospital_type' => $hospital_type,
-                                'area' => $area,
                                 'form_submit_url'=> $form_submit_url, 
                                 'action'=> $action,
                                 'disabled' => $disabled,
@@ -145,6 +142,7 @@ class HospitalController extends Controller
             'hp_house_no' => '',
             'hp_pincode' => ''
         ]);
+
         $data = array(
             'hp_name' => $request->hp_name,
             'hp_type' => $request->hp_type,
@@ -168,16 +166,17 @@ class HospitalController extends Controller
             'hp_added_by' => Auth::user()->clg_first_name,
             'hp_added_date' => date('Y-m-d H:i:s')
         );
+
         if ($validatedData->passes()) {
             $show =  Hospital::update_hosp_data($data,$hospitalId);
             Session::flash('success', 'Hospital Updated Successfully.');
         }
+
         return response()->json(['error'=>$validatedData->errors()]);
     }
     public function show($hospitalId)
     {
         $hospital_type = Hospital_type::get_hospital_type();     
-        $area = Area::get_area_type();     
         $state = State::get_State();
         $district = District::get_District();
         $tahsil = Tahsil::get_tahsil();
@@ -193,7 +192,7 @@ class HospitalController extends Controller
             'tahsil' => $tahsil,
             'city' => $city,
             'hospital_type' => $hospital_type,
-            'area' => $area,
+          
             'form_submit_url'=> $form_submit_url, 
             'action'=> $action,
             'disabled' => $disabled,

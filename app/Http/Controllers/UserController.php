@@ -158,6 +158,7 @@ class UserController extends Controller
             'clg_address' => '',
           
         ]);
+        
         $request->clg_password =  Hash::make($request->clg_password);
         $data = array(
             'clg_first_name' => $request->clg_first_name,

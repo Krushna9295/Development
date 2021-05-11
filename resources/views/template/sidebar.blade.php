@@ -75,7 +75,7 @@
            <li class="nav-item">
              <a href="{{route('patient.list')}}" class="nav-link">
                <i class="fa fa-users nav-icon"></i>
-               <p>Patient List11</p>
+               <p>Patient List</p>
              </a>
            </li>
          </ul>

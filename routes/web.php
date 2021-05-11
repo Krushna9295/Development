@@ -99,3 +99,5 @@ Route::post('/upload/store/', ['middleware' => 'auth', 'uses' => 'App\Http\Contr
 Route::get('/isolation/follow_up_create/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HomeIsolationController@follow_up_create'])->name('isolation.follow_up_create');
 Route::post('/isolation/follow_up_store', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HomeIsolationController@follow_up_store'])->name('isolation.follow_up_store');
 Route::get('/isolation/follow_up_view/{_id}', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\HomeIsolationController@follow_up_view'])->name('isolation.follow_up_view');
+
+Route::get('Search', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\SearchController@create'])->name('Search.Controller');

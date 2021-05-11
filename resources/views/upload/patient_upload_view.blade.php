@@ -9,6 +9,9 @@
                     <div class="col-sm-6">
                         <h1>Patient Upload Data</h1>
                     </div>
+                    <div class=" col-sm-6 form-group text-right">
+                        <a class="fas fa-backward" href="{{ route('patient.list') }}"> Go back</a>
+                    </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -28,14 +31,15 @@
                             <h3 class="card-title">Patient Upload Data</h3>
                         </div>
                         <!-- /.card-header -->
+                       
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
                                     <form method="post" action="{{route('upload.store')}}" name="" class="form-horizontal" enctype="multipart/form-data">
                                     @csrf
-                                        <input type="file" class="form-control" id="ptn_name" name="ptn_upload_data" placeholder="Patient Name" >
-                                        <input type="Submit" class="form-control btn btn-primary left btn-submit" placeholder="Upload" style="width: 100%;">                                    </form>
+                                        <input type="file" class="form-control" id="ptn_name" name="ptn_upload_data" placeholder="Patient Name" ><br>
+                                        <input type="Submit" class="form-control btn btn-primary left btn-submit" placeholder="Upload" style="width: 50%;">                                    </form>
                                     </div>
                                 </div>
                             </div>

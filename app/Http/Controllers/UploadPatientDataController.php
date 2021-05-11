@@ -20,6 +20,9 @@ class UploadPatientDataController extends Controller
         return view('upload.patient_upload_view');
     }
     public function store(Request $request){
+        $validator = $this->validate($request, [
+            'ptn_upload_data' => 'required'
+        ]);
         $filename = $request->ptn_upload_data;
         $file = fopen($filename, "r");
         while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
@@ -29,6 +32,7 @@ class UploadPatientDataController extends Controller
                 'ptn_age'=>$getData[2],
                 'ptn_gender'=>$getData[3],
                 'ptn_address'=>$getData[4],
+                'ptn_contact_no'=>$getData[5],
                 'modify_date' => date('Y-m-d H:i:s'),
                 'added_date' => date('Y-m-d H:i:s'),
                 'modify_date_sync' => date('Y-m-d H:i:s')

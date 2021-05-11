@@ -238,7 +238,8 @@ class PatientController extends Controller
             'followup_status' => $request->followup_status,
             'followup_remark' => $request->followup_remark,
             'followup_added_by' => Auth::user()->clg_ref_id,
-            'followup_added_date' => date('Y-m-d H:i:s')
+            'followup_added_date' => date('Y-m-d H:i:s'),
+            'ptn_followup_from_hosp_iso' => 'hosp'
         );
         $ptn['ptn_status'] = $request->followup_status;
         if ($validatedData->passes()) {

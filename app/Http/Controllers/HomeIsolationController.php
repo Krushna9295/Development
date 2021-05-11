@@ -38,21 +38,24 @@ class HomeIsolationController extends Controller
             'iso_doctor_name' => $request->iso_doctor_name,
             'iso_doctor_cont_no' => $request->iso_doctor_cont_no,
             'iso_test_inv_advised' => $request->iso_test_inv_advised,
-            'iso_t_t_givenor_adv_given' => $request->iso_t_t_givenor_adv_given,
+            'iso_t_t_givenor_adv_given' => json_encode($request->iso_t_t_givenor_adv_given),
+            'iso_t_t_givenor_adv_given_other' => $request->iso_t_t_givenor_adv_given_other,
             'iso_no_visit_date_wise_t_t' => $request->iso_no_visit_date_wise_t_t,
             'iso_breath' => $request->iso_breath,
             'iso_chest_pain' => $request->iso_chest_pain,
             'iso_fever' => $request->iso_fever,
             'iso_cough' => $request->iso_cough,
             'iso_diarrhea' => $request->iso_diarrhea,
-            'iso_comorbidity' => $request->iso_comorbidity,
+            'iso_comorbidity' => json_encode($request->iso_comorbidity),
+            'iso_comorbidity_other' => $request->iso_comorbidity_other,
             'iso_spo_two' => $request->iso_spo_two,
             'iso_pulse' => $request->iso_pulse,
             'iso_rr' => $request->iso_rr,
             'iso_remark' => $request->iso_remark,
             'iso_close_call' => $request->iso_close_call,
             'followup_added_by' => Auth::user()->clg_ref_id,
-            'followup_added_date' => date('Y-m-d H:i:s')
+            'followup_added_date' => date('Y-m-d H:i:s'),
+            'ptn_followup_from_hosp_iso' => 'iso'
         );
         
         if ($validatedData->passes()) {
@@ -67,7 +70,7 @@ class HomeIsolationController extends Controller
     }
     function follow_up_view($isolationId){
         $data['patientFollowup'] = isolation_followup::patientFollowupRecWithId($isolationId);
-        // print_r( $data['isolation']);die;
+        // print_r( $data['patientFollowup']);die;
         $data['action'] = 'Isolation Followup View';
         return view('isolation.follow_up_view',$data);
     }

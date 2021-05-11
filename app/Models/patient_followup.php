@@ -14,6 +14,7 @@ class patient_followup extends Model
         return  DB::table('tdd_patient_follow_up as ptnfollo')
             ->select('ptnfollo.*')  
             ->where('ptnfollo.ptn_id',$patientId)
+            ->where('ptnfollo.ptn_followup_from_hosp_iso','hosp')
             ->get();
     }
 }
